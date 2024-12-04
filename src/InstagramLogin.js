@@ -123,18 +123,18 @@ const InstagramLogin = () => {
                     )}
 
                     <div className="mt-4 text-center">
-                        <a href="#" className="text-xs text-blue-900">
+                        <button onClick={() => alert('Forgot password clicked')} className="text-xs text-blue-900 underline">
                             Forgot password?
-                        </a>
+                        </button>
                     </div>
                 </div>
 
                 <div className="bg-white p-6 border border-gray-300 rounded-lg text-center">
                     <p className="text-sm">
                         Don't have an account?{' '}
-                        <a href="#" className="text-blue-500 font-semibold">
+                        <button onClick={() => alert('Sign up clicked')} className="text-blue-500 font-semibold underline">
                             Sign up
-                        </a>
+                        </button>
                     </p>
                 </div>
             </div>
