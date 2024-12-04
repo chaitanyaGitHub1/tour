@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 
 const Dealmart = () => {
     const navigate = useNavigate();
-    const [offers, setOffers] = useState([
+    const [offers] = useState([
         { id: 1, title: '65% OFF on Electronics', description: 'Get 50% off on all electronics items.', discount: '65%' },
         { id: 2, title: 'Buy 1 Get 1 Free', description: 'Buy one get one free on selected items.', discount: 'BOGO' },
         { id: 3, title: '30% OFF on Groceries', description: 'Save 20% on your grocery shopping.', discount: '30%' },
         // Add more offers as needed
     ]);
-    const [images, setImages] = useState([
+    const [images] = useState([
         'https://i5.walmartimages.com/dfw/8822aef6-c0af/k2-_130d4f40-2d96-40b6-b84d-b12aa43b48b5.v1.jpg?odnHeight=290&odnWidth=290&odnBg=FFFFFF',
         'https://i5.walmartimages.com/dfw/8822aef6-7a12/k2-_41552b84-26aa-43f1-825a-c91e64ba312e.v1.jpg?odnHeight=290&odnWidth=290&odnBg=FFFFFF 1x,',
         'https://i5.walmartimages.com/dfw/8822aef6-897a/k2-_fb2dd395-8fb8-4729-b05f-2d3695e0fb0e.v1.jpg?odnHeight=290&odnWidth=290&odnBg=FFFFFF',
